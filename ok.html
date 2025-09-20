@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan Andi Sopandi</title>
+<style>
+  body, html {margin:0;padding:0;font-family:sans-serif; overflow:hidden; background:#000;}
+
+  /* Splash Screen */
+  #splash {
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:url('https://arifabdrohim857-star.github.io/Andi/IMG-20250719-WA0009.jpg') center/cover no-repeat;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:white; text-align:center; z-index:2; transition:opacity 1s ease;
+  }
+  #splash h1 {font-size:36px; margin:0 0 10px;}
+  #splash p {margin:5px 0; font-size:20px;}
+  #splash .tgl, #splash .lokasi {font-size:18px; opacity:0.9;}
+  #splash .kepada {font-size:22px; margin:10px 0; font-weight:bold; opacity:0.95;}
+  #splash button {
+    background:#6e79b7;color:white;border:none;
+    padding:12px 24px;border-radius:8px; font-size:18px;
+    cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.3); margin-top:20px;
+  }
+  #splash button:hover {transform:scale(1.05); transition:0.3s;}
+
+  /* Halaman Utama */
+  #main {
+    display:none;
+    position:relative; z-index:3;
+    min-height:100vh; padding:30px;
+    color:#fff; text-align:center; 
+    background:url('https://arifabdrohim857-star.github.io/Andi/IMG-20250719-WA0009.jpg') center/cover no-repeat fixed;
+    animation: fadeIn 2s ease;
+  }
+  #main h2 {font-size:28px; margin-bottom:10px;}
+  #main h3 {font-size:24px; margin-top:20px;}
+  #main p {font-size:18px; margin:5px 0;}
+  @keyframes fadeIn {from {opacity:0; transform:translateY(20px);}to {opacity:1; transform:translateY(0);}}
+
+  /* Teks berjalan */
+  #marquee {margin:20px 0; font-size:20px; font-weight:bold; color:#ffe;}
+  #marquee span {display:inline-block; white-space:nowrap; animation: marquee 10s linear infinite;}
+  @keyframes marquee {0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+</style>
+</head>
+<body>
+
+<!-- Splash Screen -->
+<div id="splash">
+  <h1>Undangan Pernikahan</h1>
+  <p class="nama">Andi Sopandi</p>
+  <p class="tgl">25 November 2025</p>
+  <p class="lokasi">Tasik</p>
+  <p class="kepada" id="kepada">Kepada Yth. Tamu</p>
+  <button id="openBtn">Buka Undangan</button>
+</div>
+
+<!-- Halaman Utama -->
+<div id="main">
+  <div id="marquee"><span>Selamat datang! Terima kasih telah berkunjung ke undangan pernikahan Andi Sopandi.</span></div>
+  <h2>Undangan Pernikahan</h2>
+  <p>Dengan penuh kebahagiaan, kami mengundang Anda untuk hadir dalam acara pernikahan:</p>
+  <h3>Andi Sopandi</h3>
+  <p>Tanggal: 25 November 2025</p>
+  <p>Lokasi: Tasik</p>
+  <br>
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15841.696725384417!2d108.2050!3d-7.3274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65931ab84c14c7%3A0x301e8f1fc28b4f0!2sTasikmalaya!5e0!3m2!1sid!2sid!4v1695199999999" 
+    width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy">
+  </iframe>
+</div>
+
+<!-- Musik -->
+<audio id="bgm" loop>
+  <source src="https://arifabdrohim857-star.github.io/Music/Music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // Ambil parameter "nama" dari URL
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  const namaTamu = getQueryParam('nama');
+  const kepadaElem = document.getElementById('kepada');
+  
+  if(namaTamu) {
+    kepadaElem.textContent = `Kepada Yth. ${decodeURIComponent(namaTamu)}`;
+  }
+
+  // Splash dan musik
+  const splash = document.getElementById('splash');
+  const main = document.getElementById('main');
+  const openBtn = document.getElementById('openBtn');
+  const music = document.getElementById('bgm');
+
+  openBtn.addEventListener('click', ()=>{
+    splash.style.opacity = '0';
+    setTimeout(()=>{
+      splash.style.display = 'none';
+      main.style.display = 'block';
+      music.play();
+    }, 1000);
+  });
+</script>
+
+</body>
+</html>
